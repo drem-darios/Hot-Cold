@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Hot Cold</string>
+    <string name="subtitle">The game that gets hotter as you play!</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="play">Play</string>
+    <string name="create">Create</string>
+    <string name="easy">Easy</string>
+    <string name="medium">Medium</string>
+    <string name="hard">Hard</string>
+    <string name="difficulty_select_title">Select Difficulty</string>
+    <string name="difficulty_detail">Select a difficulty</string>
+    <string name="easy_detail">Only closest games will be considered.</string>
+    <string name="medium_detail">Show directions to the closest game.</string>
+    <string name="hard_detail">You\'re on your own dude&#8230;</string>
+    
+
+</resources>
