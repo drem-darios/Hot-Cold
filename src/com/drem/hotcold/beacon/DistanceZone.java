@@ -17,7 +17,7 @@ public enum DistanceZone {
 		return max;
 	}
 	
-	public DistanceZone getDistanceZone(double distance) {
+	public static DistanceZone getDistanceZone(double distance) {
 		if (distance < 0) {
 			return UNKNOWN;
 		}

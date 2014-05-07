@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 
 public class DifficultySelectActivity extends Activity {
-
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {

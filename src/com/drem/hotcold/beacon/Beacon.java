@@ -1,14 +1,21 @@
 package com.drem.hotcold.beacon;
 
+import java.io.Serializable;
+
 import android.bluetooth.BluetoothDevice;
 import android.util.Log;
 
-public class Beacon {
+public class Beacon implements Comparable<Beacon>, Serializable {
 
-	private static final char[] hexArray = {'0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F'};
+	/**
+	 * @see Serializable
+	 */
+	private static final long serialVersionUID = -4301021243531981072L;
+	private static final char[] hexArray = "0123456789ABCDEF".toCharArray();
 	private int signalPower, major, minor;
 	private int txPower;
 	private String name, address, uuid;
+	private DistanceZone zone;
 	
 	public static Beacon createBeacon(BluetoothDevice device, int rssi, byte[] scanRecord) {
 		Beacon beacon = parseByteArray(scanRecord);
@@ -16,7 +23,6 @@ public class Beacon {
 		if (device != null) {
             beacon.address = device.getAddress();
             beacon.name = device.getName();
-            Log.i("bth", bytesToHex(scanRecord));
         }
         return beacon;
 	}
@@ -79,7 +85,6 @@ public class Beacon {
 		sb.append("-");
 		sb.append(hexString.substring(20,32));
 		
-		Log.i("blah ", sb.toString());
 		return sb.toString();
 	}
 
@@ -117,25 +122,19 @@ public class Beacon {
 	public String getUuid() {
 		return uuid.toString();
 	}
-
-	public double getDistance() {
-		if (signalPower == 0) {
-			return -1.0;
-		}
-
-		double ratio = signalPower*1.0/txPower;
-		if (ratio < 1.0) {
-			return Math.pow(ratio,10);
-		}
-		else {
-			double accuracy =  (0.89976)*Math.pow(ratio,7.7095) + 0.111;	
-			return accuracy;
-		}
-	}
 	
 	public String getUniqueName() {
 		return uuid.toString() +":"+ major +":"+ minor;
 	}
+	
+	public DistanceZone getDistanceZone() {
+		if (zone == null) {
+			zone = DistanceZone.getDistanceZone(getDistance());
+		}
+		
+		return zone;
+	}
+	
 	@Override
 	public String toString() {
 		return getName() + " ID: " + getUniqueName() + " Distance: " + String.format("%.2f", getDistance());
@@ -149,5 +148,32 @@ public class Beacon {
 	        hexChars[j * 2 + 1] = hexArray[v & 0x0F];
 	    }
 	    return new String(hexChars);
+	}
+
+	@Override
+	public int compareTo(Beacon beacon) {
+		return beacon.getDistance() < getDistance() ? -1 : beacon.getDistance() == getDistance() ? 0 : 1;
+	}
+	
+	/**
+	 * Gets the last known distance this beacon was from the device by 
+	 * calculating the linear ratio between the signal power and the 
+	 * calibrated transmitter power. 
+	 * @return
+	 */
+	protected double getDistance() {
+		if (signalPower == 0) {
+			return -1.0;
+		}
+
+		double ratio = signalPower*1.0/txPower;
+		if (ratio < 1.0) {
+			return Math.pow(ratio,10);
+		}
+		else {
+			// known best fit curve for ratio
+			double accuracy = (0.89976)*Math.pow(ratio,7.7095) + 0.111;	
+			return accuracy;
+		}
 	}
 }
