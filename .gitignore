@@ -3,3 +3,4 @@
 *.apk
 .classpath
 .project
+bin/
