@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/lLayout"
+  android:orientation="vertical"
+  android:layout_width="fill_parent"
+  android:layout_height="wrap_content"
+  android:weightSum="2"
+  android:background="@drawable/repeat_alu" >
+  
+
+  <com.bluetooth.beacon.meter.Beaconometer
+    android:id="@+id/thermometer"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"/> 
+    
+  
+  <ListView android:id="@+id/beaconListview"
+    android:layout_width="fill_parent"
+    android:layout_height="300dp"
+    android:layout_gravity="bottom"
+    android:layout_weight="1" /> 
+
+</LinearLayout>
