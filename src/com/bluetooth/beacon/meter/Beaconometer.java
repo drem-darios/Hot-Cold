@@ -28,7 +28,7 @@ import com.bluetooth.beacon.models.DistanceZone;
 public final class Beaconometer extends View {
 
 	private static final String TAG = Beaconometer.class.getSimpleName();
-	private String mHotColdMeterValStrings[] = {"Max Cold", "Very Cold", "Cold", "Hot","Very Hot", "Max Hot"};
+	private String mHotColdMeterValStrings[] = {"Frozen Solid", "Freezing", "Cold", "Hot","Burning Up", "ON FIRE"};
 	public static final float mHotColdMeterHandleMovements[] = {372,311,240,182,110,47,47};
 	public static final int mHotColdMeterBackgroundResources[] = {R.drawable.state_change_0,R.drawable.state_change_1,
 															R.drawable.state_change_2,R.drawable.state_change_3,
