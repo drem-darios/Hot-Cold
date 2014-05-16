@@ -29,7 +29,7 @@ public class BeaconManager {
 	}
 	
 	public synchronized Beacon getClosestBeacon() {
-		// Ignore anything past unknown max distance
+		// Ignore anything past max cold distance
 		double minDistance = DistanceZone.MAX_COLD.getMax();
 		Beacon closest = null;
 		for (Beacon beacon : beacons.values()) {

@@ -17,6 +17,24 @@ public class Beacon implements Comparable<Beacon>, Serializable {
 	private String name, address, uuid;
 	private DistanceZone zone;
 	
+	/**
+	 * This should be used to pass around metadata about the beacon instead of 
+	 * used to gather data from the beacon.
+	 */
+	public Beacon(String name, String uuid, int major, int minor) {
+		this.name = name;
+		this.uuid = uuid;
+		this.major = major;
+		this.minor = minor;
+	}
+	
+	/**
+	 * For internal use only.
+	 */
+	private Beacon() {
+		
+	}
+	
 	public static Beacon createBeacon(BluetoothDevice device, int rssi, byte[] scanRecord) {
 		Beacon beacon = parseByteArray(scanRecord);
 		beacon.signalPower = rssi;
@@ -88,6 +106,13 @@ public class Beacon implements Comparable<Beacon>, Serializable {
 		return sb.toString();
 	}
 
+	public void setName(String n) {
+		name = n;
+	}
+
+	public void setUUID(String u) {
+		uuid = u;
+	}	
 	public String getName() {
 		if (name == null) {
 			return "Unknown";

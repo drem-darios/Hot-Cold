@@ -17,7 +17,6 @@ import android.graphics.Shader;
 import android.graphics.Typeface;
 import android.graphics.drawable.TransitionDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Parcelable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -28,7 +27,7 @@ import com.bluetooth.beacon.models.DistanceZone;
 public final class Beaconometer extends View {
 
 	private static final String TAG = Beaconometer.class.getSimpleName();
-	private String mHotColdMeterValStrings[] = {"Frozen Solid", "Freezing", "Cold", "Hot","Burning Up", "ON FIRE"};
+	private String mHotColdMeterValStrings[] = {"SOLID ICE", "Freezing", "Cold", "Hot","Burning Up", "ON FIRE"};
 	public static final float mHotColdMeterHandleMovements[] = {372,311,240,182,110,47,47};
 	public static final int mHotColdMeterBackgroundResources[] = {R.drawable.state_change_0,R.drawable.state_change_1,
 															R.drawable.state_change_2,R.drawable.state_change_3,
@@ -134,7 +133,7 @@ public final class Beaconometer extends View {
 	}
 
 	private String getTitle() {
-		return "Hot Or Cold Meter";
+		return "Hot Cold Meter";
 	}
 
 	private void initDrawingTools() {
@@ -455,8 +454,5 @@ public final class Beaconometer extends View {
 			mBackground.startTransition(3000);
 		}
 	}
-	
-	@SuppressLint("HandlerLeak")
-	private Handler handler =  new Handler() {};
 	
 }

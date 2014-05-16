@@ -45,6 +45,11 @@
             android:screenOrientation="portrait" >
         </activity>
             
+        <activity
+            android:name="com.bluetooth.beacon.meter.AddBeaconActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
     
     <uses-sdk
