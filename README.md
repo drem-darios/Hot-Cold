@@ -9,6 +9,15 @@ GAME RULES:
 
 By selecting one of the beacon names on the list, the app will start looking for that beacon. The beacon meter will slowly move from the maximum cold state to the maximum hot state. Once the device is in the maximum hot state, the user can re-select the item on the list to acknowledge they are close to the beacon. When the user has acknowledged they have seen all beacons, a message is displayed to let the user know they have won and the game is over. The user can play as many times as they’d like.
 
+DISTANCES:
+
+SOLID ICE - 13 meters away
+Freezing - 8 meters away
+Cold - 5 meters away
+Hot - 3 meters away
+Burning Up - 2 meters away
+ON FIRE - 1 meter away. This is the goal distance. 
+
 iBEACON LIMITATIONS:
 
 The beacons could be unpredictable at times. Android is limited to one callback per beacon per scan, so if you scan an area for a longer period of time, the user could be out of the range by the time the scan starts again.  Similarly, if your scan is too short, you could miss the beacon’s advertisement entirely. This inaccuracy made it a challenge to smoothly transition from one state to the next.
